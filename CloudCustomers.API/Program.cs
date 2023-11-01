@@ -1,6 +1,15 @@
+using CloudCustomers.API.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddTransient<IUsersService, UsersServices>();
+    services.AddHttpClient<IUsersService, UsersServices>();
+}
+
 // Add services to the container.
+ConfigureServices(builder.Services);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
